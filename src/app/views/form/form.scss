@@ -1,0 +1,112 @@
+:root {
+  --select-border: #777;
+  --select-focus: blue;
+  --select-arrow: var(--select-border);
+}
+
+.form {
+ 
+  @media screen and (min-width: 30em) {
+    margin: auto;
+    max-width: 900px;
+    display: grid;
+    grid-gap: 50px;
+    justify-items: center;
+    align-items: center;
+    grid-template: 
+            "plate duration" auto
+            "zone duration" auto
+            "action action" auto / 1fr 1fr;
+  }
+}
+
+.duration-container {
+  grid-area: duration;
+  display: flex;
+  grid-gap: 20px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.counter {
+  font-size: 30px;
+  padding-left: 16px;
+  padding-right: 16px;
+  margin-top: 2px;
+}
+
+.buttons {
+  display: flex;
+  grid-gap: 20px;
+}
+
+.button {
+  appearance: none;
+  background: none;
+  font-size: 32px;
+  padding-left: 12px;
+  padding-right: 12px;
+  outline: none;
+  border: 2px solid transparent;
+  color: rgb(112, 76, 182);
+  padding-bottom: 4px;
+  cursor: pointer;
+  background-color: rgba(112, 76, 182, 0.1);
+  border-radius: 2px;
+  transition: all 0.15s;
+}
+
+.button:hover,
+.button:focus {
+  border: 2px solid rgba(112, 76, 182, 0.4);
+}
+
+.button:active {
+  background-color: rgba(112, 76, 182, 0.2);
+}
+
+.zone-select {
+    display: grid;
+    grid-template-areas: "select";
+    align-items: center;
+    position: relative;
+  
+    select,
+    &::after {
+      grid-area: select;
+    }
+  
+    min-width: 15ch;
+    max-width: 30ch;
+  
+    border: 1px solid var(--select-border);
+    border-radius: 0.25em;
+    padding: 0.25em 0.5em;
+  
+    cursor: pointer;
+    line-height: 1.1;
+  
+    // Optional styles
+    // remove for transparency
+    background-color: #fff;
+    background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+  
+    // Custom arrow
+    &:not(.select--multiple)::after {
+      content: "";
+      justify-self: end;
+      width: 12px;
+      height: 6px;
+      background-color: var(--select-arrow);
+      clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+    }
+}
+
+label {
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.select + label {
+  margin-top: 2rem;
+}
