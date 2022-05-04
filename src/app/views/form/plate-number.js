@@ -6,10 +6,16 @@ import { updatePlate } from '../../store/form/actions';
 function PlateNumber() {
   const dispatch = useDispatch();
 
+  const toUpperCase = (newState) => ({
+    ...newState,
+    value: newState?.value?.toUpperCase(),
+  });
+
   return (
     <InputMask
       mask="**-***-**"
       maskChar={null}
+      beforeMaskedValueChange={toUpperCase}
       onChange={(event) => dispatch(updatePlate(event.target.value))}
     >
       {(inputProps) => (

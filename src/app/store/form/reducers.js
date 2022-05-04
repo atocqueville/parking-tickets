@@ -7,6 +7,7 @@ const initialState = { duration: TIME_INTERVAL, plate: '', zone: '' };
 
 export const formReducer = createReducer(initialState, (builder) => {
   builder
+    .addCase(actions.reset, () => initialState)
     .addCase(actions.increment, (state) => {
       state.duration += TIME_INTERVAL;
     })
