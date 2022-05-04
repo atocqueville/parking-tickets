@@ -1,0 +1,19 @@
+{
+  "env": {
+    "commonjs": true,
+    "es6": true,
+    "node": true
+  },
+  "extends": ["eslint:recommended", "plugin:react/recommended", "react-app"],
+  "plugins": ["react"],
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "rules": {
+    "no-console": 1,
+    "react/react-in-jsx-scope": 0
+  }
+}

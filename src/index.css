@@ -1,3 +1,8 @@
+@import '~normalize.css';
+@import '~@blueprintjs/core/lib/css/blueprint.css';
+@import '~@blueprintjs/select/lib/css/blueprint-select.css';
+@import '~@blueprintjs/icons/lib/css/blueprint-icons.css';
+
 *,
 *::before,
 *::after {
@@ -16,19 +21,4 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
-
-select {
-  appearance: none;
-  background-color: transparent;
-  border: none;
-  padding: 0 1em 0 0;
-  margin: 0;
-  width: 100%;
-  font-family: inherit;
-  font-size: inherit;
-  cursor: inherit;
-  line-height: inherit;
-  z-index: 1;
-  outline: none;
 }

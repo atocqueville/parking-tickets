@@ -1,7 +1,10 @@
-import React from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from "react-router-dom";
-import { selectDuration, selectPlate, selectZone} from '../../store/form/selectors';
+import { Link } from 'react-router-dom';
+import {
+  selectDuration,
+  selectPlate,
+  selectZone,
+} from '../../store/form/selectors';
 
 function Result() {
   const duration = useSelector(selectDuration);
@@ -9,14 +12,14 @@ function Result() {
   const zone = useSelector(selectZone);
 
   return (
-   <section>
-     <Link to='/'>Retour au generator</Link>
-     <pre>
-       duration: {duration}
-       plate: {plate}
-       zone: {zone}
-     </pre>
-   </section>
+    <section>
+      <Link to="/">Retour au generator</Link>
+      <pre>
+        duration: {duration}
+        plate: {plate}
+        zone: {zone}
+      </pre>
+    </section>
   );
 }
 
