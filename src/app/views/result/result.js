@@ -14,11 +14,9 @@ function Result() {
   return (
     <section>
       <Link to="/">Retour au generator</Link>
-      <pre>
-        duration: {duration}
-        plate: {plate}
-        zone: {zone}
-      </pre>
+      <p>duration: {duration}</p>
+      <p>plate: {plate}</p>
+      <p>zone: {zone}</p>
     </section>
   );
 }

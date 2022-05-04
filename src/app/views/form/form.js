@@ -1,104 +1,39 @@
-import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import InputMask from 'react-input-mask';
-import {
-  InputGroup,
-  MenuItem,
-  Button,
-  Card,
-  Elevation,
-} from '@blueprintjs/core';
-import { Select } from '@blueprintjs/select';
+import { useSelector } from 'react-redux';
+import { Button, Card, Elevation } from '@blueprintjs/core';
+import { selectPlate, selectZone } from '../../store/form/selectors';
 import './form.scss';
-import {
-  decrement,
-  increment,
-  updatePlate,
-  updateZone,
-} from '../../store/form/actions';
-import { selectDuration, selectZone } from '../../store/form/selectors';
-import { formatCount } from './utils';
-
-const zoneOptions = [
-  { name: 'Vauban', value: 1 },
-  { name: 'Vieux Lille', value: 2 },
-  { name: 'République', value: 3 },
-];
+import PlateNumber from './plate-number';
+import ZoneSelect from './zone-select';
+import Duration from './duration';
 
 function Form() {
-  const duration = useSelector(selectDuration);
+  const plate = useSelector(selectPlate);
   const zone = useSelector(selectZone);
-  const dispatch = useDispatch();
 
-  const itemRenderer = (film, { handleClick }) => {
-    return <MenuItem key={film.value} onClick={handleClick} text={film.name} />;
+  const isValid = () => {
+    return plate.length >= 9 && zone;
   };
 
   return (
     <section className="form">
       <Card elevation={Elevation.TWO}>
-        <div>
-          <InputMask
-            mask="99/99/9999"
-            onChange={(event) => dispatch(updatePlate(event.target.value))}
-          >
-            {(inputProps) => (
-              <InputGroup
-                {...inputProps}
-                large
-                placeholder="Enter your license plate"
-              />
-            )}
-          </InputMask>
-        </div>
-        <div>
-          <Select
-            items={zoneOptions}
-            itemRenderer={itemRenderer}
-            filterable={false}
-            onItemSelect={(zone) => dispatch(updateZone(zone.name))}
-          >
-            <Button text={zone || 'Select a zone'} rightIcon="caret-down" />
-          </Select>
-
-          {/* Exemple Use of native HTML select tag
-          <select
-            name="zone"
-            id="zone-select"
-            onChange={(event) => dispatch(updateZone(event.target.value))}
-          >
-            {zoneOptions.map((zone) => (
-              <option key={zone} value={zone}>
-                {zone}
-              </option>
-            ))}
-          </select> */}
-        </div>
-        <div className="duration-container">
-          <span className="counter">{formatCount(duration)}</span>
-          <div className="buttons">
-            <button
-              disabled={duration <= 15}
-              className="button"
-              aria-label="Decrement duration"
-              onClick={() => dispatch(decrement())}
-            >
-              -
-            </button>
-            <button
-              disabled={duration >= 720}
-              className="button"
-              aria-label="Increment duration"
-              onClick={() => dispatch(increment())}
-            >
-              +
-            </button>
+        <div className="container">
+          <h2>Hello ! Welcome to Lille !</h2>
+          <div className="input">
+            <PlateNumber />
           </div>
-        </div>
-        <div>
-          <Link to="/result">
-            <Button>Validate</Button>
-          </Link>
+          <div className="input">
+            <ZoneSelect zone={zone} />
+          </div>
+          <Duration />
+          <div className="action">
+            <Link to="/result">
+              <Button disabled={!isValid()} large intent="success">
+                Validate
+              </Button>
+            </Link>
+          </div>
         </div>
       </Card>
     </section>
@@ -106,3 +41,5 @@ function Form() {
 }
 
 export default Form;
+
+Form.propTypes = {};

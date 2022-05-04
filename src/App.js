@@ -7,12 +7,10 @@ function App() {
   return (
     <BrowserRouter>
       <Header />
-      <div style={{ marginTop: 200 }}>
-        <Routes>
-          <Route path="/" element={<Form />} />
-          <Route path="result" element={<Result />} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route path="/" element={<Form />} />
+        <Route path="result" element={<Result />} />
+      </Routes>
     </BrowserRouter>
   );
 }
