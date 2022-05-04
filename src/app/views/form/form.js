@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import InputMask from 'react-input-mask';
 import {
   InputGroup,
   MenuItem,
@@ -36,30 +37,31 @@ function Form() {
   return (
     <section className="form">
       <Card elevation={Elevation.TWO}>
-        <h5>
-          <a href="#">Card heading</a>
-        </h5>
-        <p>Card content</p>
-        <Button>Submit</Button>
-      </Card>
-      <div style={{ gridArea: 'plate' }}>
-        <InputGroup
-          large
-          onChange={(event) => dispatch(updatePlate(event.target.value))}
-          placeholder="Enter your password..."
-        />
-      </div>
-      <div style={{ gridArea: 'zone' }}>
-        <Select
-          items={zoneOptions}
-          itemRenderer={itemRenderer}
-          filterable={false}
-          onItemSelect={(zone) => dispatch(updateZone(zone.name))}
-        >
-          <Button text={zone || 'Select a zone'} rightIcon="caret-down" />
-        </Select>
+        <div>
+          <InputMask
+            mask="99/99/9999"
+            onChange={(event) => dispatch(updatePlate(event.target.value))}
+          >
+            {(inputProps) => (
+              <InputGroup
+                {...inputProps}
+                large
+                placeholder="Enter your license plate"
+              />
+            )}
+          </InputMask>
+        </div>
+        <div>
+          <Select
+            items={zoneOptions}
+            itemRenderer={itemRenderer}
+            filterable={false}
+            onItemSelect={(zone) => dispatch(updateZone(zone.name))}
+          >
+            <Button text={zone || 'Select a zone'} rightIcon="caret-down" />
+          </Select>
 
-        {/* Exemple Use of native HTML select tag
+          {/* Exemple Use of native HTML select tag
           <select
             name="zone"
             id="zone-select"
@@ -71,33 +73,34 @@ function Form() {
               </option>
             ))}
           </select> */}
-      </div>
-      <div className="duration-container">
-        <span className="counter">{formatCount(duration)}</span>
-        <div className="buttons">
-          <button
-            disabled={duration <= 15}
-            className="button"
-            aria-label="Decrement duration"
-            onClick={() => dispatch(decrement())}
-          >
-            -
-          </button>
-          <button
-            disabled={duration >= 720}
-            className="button"
-            aria-label="Increment duration"
-            onClick={() => dispatch(increment())}
-          >
-            +
-          </button>
         </div>
-      </div>
-      <div style={{ gridArea: 'action' }}>
-        <Link to="/result">
-          <button type="button">Validate</button>
-        </Link>
-      </div>
+        <div className="duration-container">
+          <span className="counter">{formatCount(duration)}</span>
+          <div className="buttons">
+            <button
+              disabled={duration <= 15}
+              className="button"
+              aria-label="Decrement duration"
+              onClick={() => dispatch(decrement())}
+            >
+              -
+            </button>
+            <button
+              disabled={duration >= 720}
+              className="button"
+              aria-label="Increment duration"
+              onClick={() => dispatch(increment())}
+            >
+              +
+            </button>
+          </div>
+        </div>
+        <div>
+          <Link to="/result">
+            <Button>Validate</Button>
+          </Link>
+        </div>
+      </Card>
     </section>
   );
 }

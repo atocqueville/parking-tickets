@@ -1,20 +1,12 @@
 .form {
+  margin: auto;
+  max-width: 900px;
+
   @media screen and (min-width: 30em) {
-    margin: auto;
-    max-width: 900px;
-    display: grid;
-    grid-gap: 50px;
-    justify-items: center;
-    align-items: center;
-    grid-template:
-      'plate duration' auto
-      'zone duration' auto
-      'action action' auto / 1fr 1fr;
   }
 }
 
 .duration-container {
-  grid-area: duration;
   display: flex;
   grid-gap: 20px;
   flex-direction: column;
