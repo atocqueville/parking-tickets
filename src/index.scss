@@ -16,6 +16,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: cadetblue;
 }
 
 code {
@@ -25,4 +26,13 @@ code {
 
 a:hover {
   text-decoration: none;
+}
+
+.page {
+  margin: 20px;
+
+  @media screen and (min-width: 30em) {
+    margin: 150px auto 0;
+    max-width: 600px;
+  }
 }

@@ -3,30 +3,30 @@ import { useDispatch } from 'react-redux';
 import { MenuItem, Button } from '@blueprintjs/core';
 import { Select } from '@blueprintjs/select';
 import { updateZone } from '../../store/form/actions';
+import { ZONE_OPTIONS } from '../../models';
 
-const zoneOptions = [
-  { name: 'Vauban', value: 1 },
-  { name: 'Vieux Lille', value: 2 },
-  { name: 'République', value: 3 },
-];
-
-function ZoneSelect({ zone }) {
+function ZoneSelect({ zoneName }) {
   const dispatch = useDispatch();
 
-  const itemRenderer = (film, { handleClick }) => {
-    return <MenuItem key={film.value} onClick={handleClick} text={film.name} />;
+  const itemRenderer = (zone, { handleClick }) => {
+    return <MenuItem key={zone.id} onClick={handleClick} text={zone.name} />;
   };
 
   return (
     <>
       <Select
         fill
-        items={zoneOptions}
+        items={ZONE_OPTIONS}
         itemRenderer={itemRenderer}
         filterable={false}
         onItemSelect={(zone) => dispatch(updateZone(zone.name))}
       >
-        <Button fill text={zone || 'Select a zone'} rightIcon="caret-down" />
+        <Button
+          fill
+          large
+          text={zoneName || 'Select a zone'}
+          rightIcon="caret-down"
+        />
       </Select>
 
       {/*
@@ -50,5 +50,5 @@ function ZoneSelect({ zone }) {
 export default ZoneSelect;
 
 ZoneSelect.propTypes = {
-  zone: PropTypes.string.isRequired,
+  zoneName: PropTypes.string.isRequired,
 };

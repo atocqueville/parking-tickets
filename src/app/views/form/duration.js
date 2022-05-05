@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Button } from '@blueprintjs/core';
 import { decrement, increment } from '../../store/form/actions';
 import { selectDuration } from '../../store/form/selectors';
-import { formatCount } from './utils';
+import { formatCount } from '../../utils';
 
 function Duration() {
   const duration = useSelector(selectDuration);
