@@ -11,18 +11,18 @@ import { computePrice } from '../../utils';
 import './result.scss';
 
 function Result() {
+  const dispatch = useDispatch();
+
   const duration = useSelector(selectDuration);
   const plate = useSelector(selectPlate);
   const zone = useSelector(selectZone);
-  const dispatch = useDispatch();
-
   const price = computePrice(duration, zone);
 
   return (
     <section className="page">
       <Card elevation={Elevation.TWO}>
         <Link onClick={() => dispatch(reset())} to="/">
-          Retour au generator
+          Retour au formulaire
         </Link>
         <p>duration: {duration}</p>
         <p>plate: {plate}</p>
